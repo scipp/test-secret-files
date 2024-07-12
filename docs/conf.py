@@ -163,8 +163,7 @@ html_theme_options = {
         "image_dark": "_static/logo-dark.svg",
     },
     "external_links": [
-{"name": "", "url": "https://scipp.github.io/"},
-
+        {"name": "", "url": "https://scipp.github.io/"},
     ],
     "icon_links": [
         {
