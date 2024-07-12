@@ -44,7 +44,7 @@ build:
 about:
   home: https://github.com/scipp/testsecrets
   license: BSD-3-Clause
-  summary: 
-  description: 
+  summary:
+  description:
   dev_url: https://github.com/scipp/testsecrets
   doc_url: https://scipp.github.io/testsecrets
