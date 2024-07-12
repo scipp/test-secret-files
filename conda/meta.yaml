@@ -1,0 +1,50 @@
+package:
+  name: testsecrets
+
+  version: {{ GIT_DESCRIBE_TAG }}
+
+source:
+  path: ..
+
+
+{% set pyproject = load_file_data('pyproject.toml') %}
+{% set dependencies = pyproject.get('project', {}).get('dependencies', {}) %}
+
+
+requirements:
+  build:
+    - setuptools
+    - setuptools_scm
+  run:
+    - python>=3.10
+
+  {# Conda does not allow spaces between package name and version, so remove them #}
+  {% for package in dependencies %}
+    - {% if package == "graphviz" %}python-graphviz{% else %}{{ package|replace(" ", "") }}{% endif %}
+  {% endfor %}
+
+
+test:
+  imports:
+    - testsecrets
+  requires:
+    - pytest
+  source_files:
+    - pyproject.toml
+    - tests/
+  commands:
+    # We ignore warnings during release package builds
+    - python -m pytest -Wignore tests
+
+build:
+  noarch: python
+  script:
+    - python -m pip install .
+
+about:
+  home: https://github.com/scipp/testsecrets
+  license: BSD-3-Clause
+  summary: 
+  description: 
+  dev_url: https://github.com/scipp/testsecrets
+  doc_url: https://scipp.github.io/testsecrets
