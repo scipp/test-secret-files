@@ -46,9 +46,9 @@ jobs:
     env:
         ESS_PROTECTED_FILESTORE_USERNAME: ${{ secrets.ESS_PROTECTED_FILESTORE_USERNAME }}
         ESS_PROTECTED_FILESTORE_PASSWORD: ${{ secrets.ESS_PROTECTED_FILESTORE_PASSWORD }}
+        TEST_REPO_SECRET: ${{ secrets.TEST_REPO_SECRET }}
 
     steps:
-      - run: if [ "${{ secrets.TEST_REPO_SECRET }}" = "" ]; then exit 123; fi;
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.checkout_ref }}
